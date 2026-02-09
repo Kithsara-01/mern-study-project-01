@@ -8,6 +8,7 @@ import bodyParser from "body-parser"
 import userRouter from "./routers/userRouter.js"
 import jwt from "jsonwebtoken"
 import { decode } from "node:querystring"
+import productRouter from "./routers/productRouter.js"
 
 
 
@@ -55,7 +56,8 @@ mongoose.connect(connectionString).then(
 )
 
 
-app.use("/users" , userRouter)
+app.use("/api/users" , userRouter)
+app.use("/api/products" , productRouter)
 
 
 app.listen(3000, ()=>{

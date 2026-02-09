@@ -83,3 +83,17 @@ export function loginUser(req, res){
         }
     )
 }
+
+// admin access function which was created inorder to verify admin when login to ystem
+export function isAdmin(req){
+    if(req.user == null){
+        return false;
+    }
+    if(req.user.role == "Admin"){
+        return true;
+
+    }else{
+        return false;
+
+    }
+}
