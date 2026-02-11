@@ -1,6 +1,8 @@
 import User from "../models/user.js"
 import bcrypt from "bcrypt" 
 import jwt from "jsonwebtoken"
+import dotenv from "dotenv"
+dotenv.config();
 
 
 export function createUser(req, res){   // post request
@@ -64,7 +66,7 @@ export function loginUser(req, res){
                         image : user.image,
 
                     }, 
-                    "CBC-6503" // encrpt key
+                    process.env.JWT_SECRET // encrpt key
                 )
 
 

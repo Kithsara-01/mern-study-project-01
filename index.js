@@ -9,6 +9,8 @@ import userRouter from "./routers/userRouter.js"
 import jwt from "jsonwebtoken"
 import { decode } from "node:querystring"
 import productRouter from "./routers/productRouter.js"
+import dotenv from "dotenv" 
+dotenv.config()
 
 
 
@@ -23,7 +25,7 @@ app.use(
             const token = value.replace("Bearer " , "") // mathaka athuwa "Bearer<space>" , "<no space>"
             jwt.verify(   // token eka decrypt/decode kirima
                 token,
-                "CBC-6503",
+                process.env.JWT_SECRET,
                 (err, decoded)=>{
                     if(decoded == null){
                         res.status(403).json({
@@ -43,7 +45,7 @@ app.use(
 )
 
 
-const connectionString = "mongodb+srv://admin:123@cluster0.qh7dn00.mongodb.net/?appName=Cluster0" 
+const connectionString = process.env.MONGO_URI 
 
 mongoose.connect(connectionString).then(
     ()=>{
